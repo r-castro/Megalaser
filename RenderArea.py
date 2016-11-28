@@ -26,8 +26,8 @@ class RenderArea(QWidget):
         self.antialiased = False
         self.transformed = False
 
-        self.pixmap = QPixmap()
-        self.pixmap.load(":/images/qt-logo.png")
+        self.pixmap = QPixmap("./images/qt-logo.png")
+
         pallet = QPalette()
         pallet.setColor(QPalette.Background, Qt.black)
         self.setPalette(pallet)
@@ -135,6 +135,9 @@ class RenderArea(QWidget):
                     break
                 elif self.shape == self.Shape['Text']:
                     painter.drawText(rect, Qt.AlignCenter, "Qt by\nThe Qt Company")
+                    break
+                elif self.shape == self.Shape['Pixmap']:
+                    painter.drawPixmap(10, 10, self.pixmap)
                     break
 
             painter.restore()
